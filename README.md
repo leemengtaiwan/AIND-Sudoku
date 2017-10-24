@@ -3,11 +3,44 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: We solve the problem by iterating the following two steps:
+- For every unit (row, column, diagonal, square), find naked twins
+- Remove peers' digits with those appeared in naked twins
+
+And stop when there is no more change. The reason that why we do it in iterative way is because 
+after applying the constraint on twins' peers, the peers may become candidates of 
+new naked twins, thus we should **progagate** the constraint further whenever there are new naked
+twins appear.
+
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: The biggest difference between Diagonal Sudoku and normal Sudoku is that we have to add additional 
+constraint (digits in two diagonals should not duplicate neither as other units). After adding the constraint,
+the problem solving flow is just like the one solving normal sudoku. 
+
+We will use four techniques to solve the sudoku:
+- Single digit elimination
+- Naked twins elimaination
+- One choice selection
+- Search / Simulation
+
+
+Below is the pesudo code of the program.
+
+```
+apply single digit elimination
+apply naked twins elimaination
+apply one-choice strategy
+while there are boxes with multiple digits
+    for every digit in the box:
+        randomly assign a digit to the box, perform the strategies above as simulation
+        if the sudoku is solved
+            return answer
+        else
+            try another digit
+```
+
 
 ### Install
 
